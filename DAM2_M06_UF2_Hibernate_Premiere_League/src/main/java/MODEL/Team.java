@@ -1,5 +1,10 @@
 package MODEL;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Table(name="team")
+@Entity /* Inform that needs to be mana */
 public class Team {
     private String clubName;
     private String abv;
