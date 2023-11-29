@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+	http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/persistence">
+
+	<!-- ORMEmployee es importante, lo emplearemos más adelante -->
+    <persistence-unit transaction-type="RESOURCE_LOCAL" name="ORMTeam">
+
+	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>MODEL.Team</class>
+        <!-- Aquí podremos agregar mas clases cuando sea necesario -->
+
+        <properties>
+            <!-- Configuración de la base de datos -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/1premiereleague"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+
+            <!-- Configuración de Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+	    	<property name="hibernate.hbm2ddl.auto" value="validate"/>
+        </properties>
+    </persistence-unit>
+</persistence>
