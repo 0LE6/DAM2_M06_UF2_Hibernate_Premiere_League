@@ -1,5 +1,7 @@
 package DAO;
 
+import java.util.ArrayList;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -35,5 +37,53 @@ public class DAOManagerHibernateImpl implements DAOManager {
             eManFact.close();
         }
     }
+
+
+
+	@Override
+	public boolean AddTeam(Team oneTeam) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+	@Override
+	public boolean DeleteTeam(String teamAbbr) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+	@Override
+	public Team updateTeam(Team oneTeam) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Team getTeamByAbbr(String teamAbbr) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public Team getTeamByName(String teamName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public ArrayList<Team> getAllTeams() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
