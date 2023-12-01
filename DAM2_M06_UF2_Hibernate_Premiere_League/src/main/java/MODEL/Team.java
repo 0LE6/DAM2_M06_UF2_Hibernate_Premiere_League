@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Table(name="team")
-@Entity /* Inform that needs to be mana */
+@Entity /* Inform that needs to be manage w/ persistence */
 public class Team {
     private String clubName;
     private String abv;
