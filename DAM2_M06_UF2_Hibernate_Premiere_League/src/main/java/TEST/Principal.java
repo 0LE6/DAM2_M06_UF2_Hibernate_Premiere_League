@@ -2,6 +2,7 @@ package TEST;
 
 import DAO.DAOManager;
 import DAO.DAOManagerFactory;
+import MODEL.Player;
 import MODEL.Team;
 
 public class Principal {
@@ -32,15 +33,24 @@ public class Principal {
 //			} else { System.out.println("TEAM NOT DELETED!"); }
 			
 			// getTeamByAbbr
-			System.out.println(dao.getTeamByAbbr("MNC"));
+//			System.out.println(dao.getTeamByAbbr("MNC"));
 			
 			// getTeamByName
-			System.out.println(dao.getTeamByName("Man City"));
+//			System.out.println(dao.getTeamByName("Man City"));
 			
 			// getAllTeams
-			for (Team t : dao.getAllTeams()) {
-				System.out.println(t);
-			}
+//			for (Team t : dao.getAllTeams()) { System.out.println(t); }
+			
+			/* NOTE : correct working of A3.2 methods */
+			
+			
+			/* NOTE : tests of A3.3 */
+			// addPlayer
+			Player oleg = new Player(
+					"MNC", 1, "Oleg Kharenko", 190, "MF");
+			if(dao.addPlayer(oleg)) {
+				System.out.println("Player ADDED SUCCESFULLY!");
+			} else { System.out.println("Player NOT ADDED!"); }
 			
 		} catch (Exception e) { e.printStackTrace(); }
 	}
