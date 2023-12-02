@@ -160,7 +160,7 @@ public class DAOManagerHibernateImpl implements DAOManager {
 	}
 
 	@Override
-	public int ImportPlayers(String playersFileName, String teamName) {
+	public int importPlayers(String playersFileName, String teamName) {
 
 		/* NOTE : PROJECT S-NK */
 	    int count = 0;

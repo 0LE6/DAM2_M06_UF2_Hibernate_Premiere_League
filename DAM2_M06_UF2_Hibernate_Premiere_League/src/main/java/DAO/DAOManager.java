@@ -16,5 +16,5 @@ public interface DAOManager extends AutoCloseable{
 	
 	/* Methods of A3.3 */
 	public boolean addPlayer(Player onePlayer);
-	public int ImportPlayers(String playersFileName, String teamName);
+	public int importPlayers(String playersFileName, String teamName);
 }

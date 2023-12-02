@@ -8,6 +8,8 @@ import MODEL.Team;
 public class Principal {
 
 	public static void main(String[] args) {
+		
+		final String PLAYERS_FILE = "players.csv";
 
 		// Using try-w-resources to implements the AutoCloseable
 		try (DAOManager dao = DAOManagerFactory.createDAOManager()){
@@ -46,13 +48,16 @@ public class Principal {
 			
 			/* NOTE : tests of A3.3 */
 			// addPlayer
-			Player oleg = new Player(
-					"MNC", 1, "Oleg Kharenko", 190, "MF");
-			if(dao.addPlayer(oleg)) {
-				System.out.println("Player ADDED SUCCESFULLY!");
-			} else { System.out.println("Player NOT ADDED!"); }
+//			Player oleg = new Player(
+//					"MNC", 1, "Oleg Kharenko", 190, "MF");
+//			if(dao.addPlayer(oleg)) {
+//				System.out.println("Player ADDED SUCCESFULLY!");
+//			} else { System.out.println("Player NOT ADDED!"); }
 			
 			// NOTE: working!
+			
+			// addPlayers
+			System.out.println(dao.importPlayers(PLAYERS_FILE, "Man City"));
 			
 			
 		} catch (Exception e) { e.printStackTrace(); }
