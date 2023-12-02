@@ -184,10 +184,46 @@ public class DAOManagerHibernateImpl implements DAOManager {
 	                    case "Arsenal FC":
 	                        teamAbv = "Arsenal";
 	                        break;
-	                    case "Manchester United":
-	                        teamAbv = "ManUtd";
+	                    case "Aston Villa":
+	                        teamAbv = "Aston Villa";
 	                        break;
-	                    // Agrega más casos según sea necesario
+	                    case "AFC Bournemouth":
+	                        teamAbv = "Bournemouth";
+	                        break; 
+	                    case "Brentford FC":
+	                        teamAbv = "Brentford";
+	                        break;
+	                    case "Brighton & Hove Albion":
+	                        teamAbv = "Brighton";
+	                        break;    
+	                    case "Chelsea FC":
+	                        teamAbv = "Chelsea";
+	                        break;     
+	                    case "Crystal Palace":
+	                        teamAbv = "Crystal Palace";
+	                        break;
+	                    case "Everton FC":
+	                        teamAbv = "Everton";
+	                        break;   
+	                    case "Fulham FC":
+	                        teamAbv = "Fulham";
+	                        break;    
+	                    case "Leeds United":
+	                        teamAbv = "Leeds";
+	                        break;     
+	                    case "Leicester City":
+	                        teamAbv = "Leicester";
+	                        break;     
+	                    case "Liverpool FC":
+	                        teamAbv = "Liverpool";
+	                        break; 
+	                    case "Manchester City":
+	                        teamAbv = "Man City";
+	                        break;     
+	                    case "Manchester United":
+	                        teamAbv = "Man United";
+	                        break;     
+	                        
 	                    default:
 	                        teamAbv = fields[1]; // Si no hay coincidencia, usa el nombre original
 	                        break;
