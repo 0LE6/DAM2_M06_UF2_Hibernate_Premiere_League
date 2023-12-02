@@ -165,7 +165,7 @@ public class DAOManagerHibernateImpl implements DAOManager {
 		/* NOTE : PROJECT S-NK */
 	    int count = 0;
 	    int playerId = 1;
-	    //boolean past = false;
+	    boolean past = false;
 
 	    try (FileReader fR = new FileReader(playersFileName);
 	         BufferedReader bR = new BufferedReader(fR);
@@ -173,7 +173,7 @@ public class DAOManagerHibernateImpl implements DAOManager {
 	        String line = bR.readLine(); // Avoiding the 1st line
 	        line = bR.readLine();
 
-	        while (line != null) {
+	        while (line != null && !past) {
 
 	            String[] fields = line.split(";");
 	            
@@ -244,27 +244,31 @@ public class DAOManagerHibernateImpl implements DAOManager {
                         correctTeamName = fields[1]; 
                         break;
                 }	            
-	            if (fields[5].equals("2022-2023") && correctTeamName.equals(teamName)) {
-
-	                Player newPlayer = new Player();
-
-	                /* NOTE : important, using the team name to get the abbreviation 
-	                 * through the method getTeamByName and then the getter of abbreviation */
-	                newPlayer.setTeamAbv(getTeamByName(correctTeamName).getAbv());
-	                newPlayer.setPlayerId(playerId++); 
-	                newPlayer.setName(fields[0]);
-	                
-	                /* NOTE : taking the first 3 numbers of this field, 
-	                 * corresponding to the height without the " cm"*/
-	                newPlayer.setHeight(Integer.parseInt(fields[3].substring(0, 3)));
-	                newPlayer.setPosition(fields[4]);
-
-	                if (addPlayer(newPlayer)) {
-	                    count++;
-	                }
+                
+                if (fields[5].compareTo("2022-2023") > 0) {
+	            	past = true;
 	            }
-
-	            line = bR.readLine();
+	            else {
+	            	
+	            	if (fields[5].equals("2022-2023") && correctTeamName.equals(teamName)){
+	            	
+		            	Player newPlayer = new Player();
+	
+		                /* NOTE : important, using the team name to get the abbreviation 
+		                 * through the method getTeamByName and then the getter of abbreviation */
+		                newPlayer.setTeamAbv(getTeamByName(correctTeamName).getAbv());
+		                newPlayer.setPlayerId(playerId++); 
+		                newPlayer.setName(fields[0]);
+		                
+		                /* NOTE : taking the first 3 numbers of this field, 
+		                 * corresponding to the height without the " cm" */
+		                newPlayer.setHeight(Integer.parseInt(fields[3].substring(0, 3)));
+		                newPlayer.setPosition(fields[4]);
+	
+		                if (addPlayer(newPlayer)) count++;
+	            	}
+	            } 
+                line = bR.readLine();
 	        }
 	    } catch (IOException ex) { ex.printStackTrace(); }
 
