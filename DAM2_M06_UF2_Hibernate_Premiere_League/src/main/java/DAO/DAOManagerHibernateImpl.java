@@ -69,11 +69,29 @@ public class DAOManagerHibernateImpl implements DAOManager {
 
 
 
-	@Override
-	public Team updateTeam(Team oneTeam) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Team updateTeam(Team oneTeam) {
+    	
+        EntityTransaction transaction = eMan.getTransaction();
+        Team teamAfterUpdate = null;
+
+        try {
+        	
+            transaction.begin();
+            teamAfterUpdate = eMan.find(Team.class, oneTeam.getAbv());
+
+            // If the parameter team exists...
+            if (teamAfterUpdate != null) { 
+                // Update all fields except abbreviation
+            	teamAfterUpdate.setClubName(oneTeam.getClubName());
+            	teamAfterUpdate.setHexCode(oneTeam.getHexCode());
+            	teamAfterUpdate.setLogoLink(oneTeam.getLogoLink());
+            	transaction.commit();
+            }
+        } catch (Exception ex) { ex.printStackTrace(); }
+        
+        return teamAfterUpdate;
+    }
 
 
 
