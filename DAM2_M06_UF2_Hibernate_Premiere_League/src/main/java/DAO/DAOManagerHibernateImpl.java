@@ -162,8 +162,10 @@ public class DAOManagerHibernateImpl implements DAOManager {
 	@Override
 	public int ImportPlayers(String playersFileName, String teamName) {
 
+		/* NOTE : PROJECT S-NK */
 	    int count = 0;
 	    int playerId = 0;
+	    //boolean past = false;
 
 	    try (FileReader fR = new FileReader(playersFileName);
 	         BufferedReader bR = new BufferedReader(fR);
@@ -175,8 +177,8 @@ public class DAOManagerHibernateImpl implements DAOManager {
 
 	            String[] fields = line.split(";");
 	            
-	         // Switch para mapear el nombre del equipo a la abreviatura
-                String correctTeamName;
+	            // Crazy Switch 
+	            String correctTeamName;
                 switch (fields[1]) {
                     case "Arsenal FC":
                         correctTeamName = "Arsenal"; 
@@ -241,9 +243,8 @@ public class DAOManagerHibernateImpl implements DAOManager {
                     default:
                         correctTeamName = fields[1]; 
                         break;
-                }
-	            
-	            if ("2022-2023".equals(fields[5])) {
+                }	            
+	            if (fields[5].equals("2022-2023") && correctTeamName.equals(teamName)) {
 
 	                Player newPlayer = new Player();
 
@@ -252,7 +253,10 @@ public class DAOManagerHibernateImpl implements DAOManager {
 	                newPlayer.setTeamAbv(getTeamByName(correctTeamName).getAbv());
 	                newPlayer.setPlayerId(playerId++); 
 	                newPlayer.setName(fields[0]);
-	                newPlayer.setHeight(Integer.parseInt(fields[3]));
+	                
+	                /* NOTE : taking the first 3 numbers of this field, 
+	                 * corresponding to the height without the " cm"*/
+	                newPlayer.setHeight(Integer.parseInt(fields[3].substring(0, 3)));
 	                newPlayer.setPosition(fields[4]);
 
 	                if (addPlayer(newPlayer)) {
