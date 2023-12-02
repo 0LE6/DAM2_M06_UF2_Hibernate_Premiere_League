@@ -2,7 +2,7 @@ package DAO;
 
 public class DAOManagerFactory {
 
-	public DAOManager createDAOManager() {
+	public static DAOManager createDAOManager() {
 		return new DAOManagerHibernateImpl();
 	}
 }
