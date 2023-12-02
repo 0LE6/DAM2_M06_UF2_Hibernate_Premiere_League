@@ -26,13 +26,23 @@ public class DAOManagerHibernateImpl implements DAOManager {
     }
 
 	
-	@Override
-	public boolean AddTeam(Team oneTeam) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean AddTeam(Team oneTeam) {
+    	
+        EntityTransaction transaction = eMan.getTransaction();
+        boolean isAdded = false;
 
-
+        try {
+        	
+            transaction.begin();
+            eMan.persist(oneTeam);
+            transaction.commit();
+            isAdded = true;
+            
+        } catch (Exception ex) { ex.printStackTrace(); }
+        
+        return isAdded;
+    }
 
 	@Override
 	public boolean DeleteTeam(String teamAbbr) {
