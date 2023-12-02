@@ -47,14 +47,12 @@ public class DAOManagerHibernateImpl implements DAOManager {
     @Override
     public boolean DeleteTeam(String teamAbbr) {
     	
-        EntityTransaction transaction = null;
+        EntityTransaction transaction = eMan.getTransaction();
         boolean isDeleated = false;
 
         try {
-        	
-            transaction = eMan.getTransaction();
-            transaction.begin();
 
+            transaction.begin();
             // Checking if there's any team w/ that abbreviation.
             Team team = eMan.find(Team.class, teamAbbr);
 
