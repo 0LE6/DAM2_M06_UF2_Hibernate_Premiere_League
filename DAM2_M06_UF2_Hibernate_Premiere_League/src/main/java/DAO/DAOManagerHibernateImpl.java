@@ -1,5 +1,8 @@
 package DAO;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -156,12 +159,63 @@ public class DAOManagerHibernateImpl implements DAOManager {
 	    return isAdded;
 	}
 
-
 	@Override
 	public int ImportPlayers(String playersFileName, String teamName) {
-		// TODO Auto-generated method stub
-		return 0;
+
+	    int count = 0;
+
+	    try (FileReader fR = new FileReader(playersFileName);
+	         BufferedReader bR = new BufferedReader(fR);
+	    ) {
+	        String line = bR.readLine(); // Avoiding the 1st line
+	        line = bR.readLine();
+
+	        while (line != null) {
+
+	            String[] fields = line.split(";");
+	            // Asegúrate de tener suficientes campos y verifica si el equipo y la temporada son correctos
+	            if (fields.length >= 6 && "2022-2023".equals(fields[5])) {
+
+	                Player newPlayer = new Player();
+	                
+	                // Switch para mapear el nombre del equipo a la abreviatura
+	                String teamAbv;
+	                switch (fields[1]) {
+	                    case "Arsenal FC":
+	                        teamAbv = "Arsenal";
+	                        break;
+	                    case "Manchester United":
+	                        teamAbv = "ManUtd";
+	                        break;
+	                    // Agrega más casos según sea necesario
+	                    default:
+	                        teamAbv = fields[1]; // Si no hay coincidencia, usa el nombre original
+	                        break;
+	                }
+
+	                // Configura los atributos del jugador según el orden en el archivo CSV
+	                newPlayer.setTeamAbv(teamAbv);
+	                newPlayer.setPlayerId(Integer.parseInt(fields[2]));
+	                newPlayer.setName(fields[0]);
+	                newPlayer.setHeight(Integer.parseInt(fields[3]));
+	                newPlayer.setPosition(fields[4]);
+
+	                // Llama al método addPlayer que deberías haber implementado anteriormente
+	                if (addPlayer(newPlayer)) {
+	                    count++;
+	                }
+	            }
+
+	            line = bR.readLine();
+	        }
+	    } catch (IOException ex) {
+	        ex.printStackTrace();
+	    }
+
+	    return count;
 	}
+
+
     
 	@Override
     public void close() {
