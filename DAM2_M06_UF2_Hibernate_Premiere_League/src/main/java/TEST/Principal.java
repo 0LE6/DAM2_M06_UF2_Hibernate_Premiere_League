@@ -57,7 +57,11 @@ public class Principal {
 			// NOTE: working!
 			
 			// addPlayers
-			System.out.println(dao.importPlayers(PLAYERS_FILE, "Man City"));
+//			System.out.println(dao.importPlayers(PLAYERS_FILE, "Man City"));
+			
+//			System.out.println(dao.importPlayers(PLAYERS_FILE, "Man United"));
+			
+			System.out.println(dao.importPlayers(PLAYERS_FILE, "Arsenal"));
 			
 			
 		} catch (Exception e) { e.printStackTrace(); }

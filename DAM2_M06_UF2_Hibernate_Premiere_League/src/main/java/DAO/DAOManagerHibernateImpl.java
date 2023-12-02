@@ -164,7 +164,7 @@ public class DAOManagerHibernateImpl implements DAOManager {
 
 		/* NOTE : PROJECT S-NK */
 	    int count = 0;
-	    int playerId = 0;
+	    int playerId = 1;
 	    //boolean past = false;
 
 	    try (FileReader fR = new FileReader(playersFileName);
@@ -270,7 +270,6 @@ public class DAOManagerHibernateImpl implements DAOManager {
 
 	    return count;
 	}
-
 
     
 	@Override
