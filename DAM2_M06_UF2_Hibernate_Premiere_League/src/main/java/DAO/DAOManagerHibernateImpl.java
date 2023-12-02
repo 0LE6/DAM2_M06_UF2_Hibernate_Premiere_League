@@ -1,7 +1,6 @@
 package DAO;
 
 import java.util.ArrayList;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -112,7 +111,7 @@ public class DAOManagerHibernateImpl implements DAOManager {
     	Team teamByName = null;
     	
     	try {
-    		
+    		// Using parameters to avoid SQL Injections
     		Query query = eMan.createQuery(
     				"SELECT t FROM Team t WHERE t.clubName = :name");
     		query.setParameter("name", teamName);
@@ -123,10 +122,20 @@ public class DAOManagerHibernateImpl implements DAOManager {
     	return teamByName;
     }
     
+	@SuppressWarnings("unchecked")
 	@Override
 	public ArrayList<Team> getAllTeams() {
-		// TODO Auto-generated method stub
-		return null;
+
+		ArrayList<Team> listOfTeams = null;
+		
+		try { 
+			
+			Query query = eMan.createQuery("SELECT t FROM Team t");
+			listOfTeams = (ArrayList<Team>) query.getResultList();
+			
+		} catch (Exception e) { e.printStackTrace(); }		
+		
+		return listOfTeams;
 	}
     
 	@Override
