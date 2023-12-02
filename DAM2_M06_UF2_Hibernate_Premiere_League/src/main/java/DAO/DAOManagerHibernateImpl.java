@@ -25,8 +25,8 @@ public class DAOManagerHibernateImpl implements DAOManager {
     }
 
 	
-    @Override
-    public boolean AddTeam(Team oneTeam) {
+    @Override 
+    public boolean addTeam(Team oneTeam) {
     	
         EntityTransaction transaction = eMan.getTransaction();
         boolean isAdded = false;
@@ -44,7 +44,7 @@ public class DAOManagerHibernateImpl implements DAOManager {
     }
 
     @Override
-    public boolean DeleteTeam(String teamAbbr) {
+    public boolean deleteTeam(String teamAbbr) {
     	
         EntityTransaction transaction = eMan.getTransaction();
         boolean isDeleated = false;

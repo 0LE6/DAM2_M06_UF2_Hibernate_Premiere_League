@@ -25,7 +25,10 @@ public class Team implements Serializable {
 	@Column(name="logo_link")
     private String logoLink;
 
-    // Constructor
+	
+    // Constructors
+	public Team() { } /* Very important, if there's no one the update method breaks */
+	
     public Team(String clubName, String abv, String hexCode, String logoLink) {
         this.clubName = clubName;
         this.abv = abv;
