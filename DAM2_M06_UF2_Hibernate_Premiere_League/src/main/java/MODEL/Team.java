@@ -1,14 +1,28 @@
 package MODEL;
 
+import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name="team")
 @Entity /* Inform that needs to be manage w/ persistence */
-public class Team {
+public class Team implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Column(name="club_name")
     private String clubName;
+	
+	@Id
+	@Column(name="abv")
     private String abv;
+	
+	@Column(name="hex_code")
     private String hexCode;
+	
+	@Column(name="logo_link")
     private String logoLink;
 
     // Constructor
@@ -19,7 +33,9 @@ public class Team {
         this.logoLink = logoLink;
     }
 
-    // Getters and setters
+    /* Getters & Setters */
+	public static long getSerialversionuid() { return serialVersionUID;}
+	
 	public String getClubName() {
 		return clubName;
 	}
