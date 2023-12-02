@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import MODEL.Player;
 import MODEL.Team;
 
 public class DAOManagerHibernateImpl implements DAOManager {
@@ -137,6 +138,20 @@ public class DAOManagerHibernateImpl implements DAOManager {
 		
 		return listOfTeams;
 	}
+	
+	/* NOTE : Methods of A3.3 */
+	@Override
+	public boolean addPlayer(Player onePlayer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public int ImportPlayers(String playersFileName, String teamName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
     
 	@Override
     public void close() {
@@ -148,5 +163,8 @@ public class DAOManagerHibernateImpl implements DAOManager {
             eManFact.close();
         }
     }
+
+
+	
 
 }
