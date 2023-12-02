@@ -44,11 +44,31 @@ public class DAOManagerHibernateImpl implements DAOManager {
         return isAdded;
     }
 
-	@Override
-	public boolean DeleteTeam(String teamAbbr) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean DeleteTeam(String teamAbbr) {
+    	
+        EntityTransaction transaction = null;
+        boolean isDeleated = false;
+
+        try {
+        	
+            transaction = eMan.getTransaction();
+            transaction.begin();
+
+            // Checking if there's any team w/ that abbreviation.
+            Team team = eMan.find(Team.class, teamAbbr);
+
+            // If there's one,  then we'll delete it
+            if (team != null) {
+                eMan.remove(team);
+                transaction.commit();
+                isDeleated = true;
+            } 
+        } catch (Exception ex) { ex.printStackTrace(); }
+        
+        return isDeleated;
+    }
+
 
 
 	@Override
