@@ -18,7 +18,7 @@ public class DAOManagerHibernateImpl implements DAOManager {
     public DAOManagerHibernateImpl() {
         try {
 
-            eManFact = Persistence.createEntityManagerFactory("ORMEmployee");
+            eManFact = Persistence.createEntityManagerFactory("ORMTeam");
             eMan = eManFact.createEntityManager();
             
         } catch (Exception e) { e.printStackTrace(); }
