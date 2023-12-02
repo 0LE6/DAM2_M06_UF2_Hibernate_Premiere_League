@@ -142,8 +142,18 @@ public class DAOManagerHibernateImpl implements DAOManager {
 	/* NOTE : Methods of A3.3 */
 	@Override
 	public boolean addPlayer(Player onePlayer) {
-		// TODO Auto-generated method stub
-		return false;
+
+		EntityTransaction transaction = eMan.getTransaction();
+	    boolean isAdded = false;
+
+	    try {
+	        transaction.begin();
+	        eMan.persist(onePlayer);
+	        transaction.commit();
+	        isAdded = true;
+	    } catch (Exception e) { e.printStackTrace(); }
+
+	    return isAdded;
 	}
 
 
