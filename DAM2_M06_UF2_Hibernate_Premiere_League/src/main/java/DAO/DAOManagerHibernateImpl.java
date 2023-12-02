@@ -222,8 +222,25 @@ public class DAOManagerHibernateImpl implements DAOManager {
 	                        break;     
 	                    case "Manchester United":
 	                        teamAbv = "Man United";
+	                        break; 
+	                    case "Newcastle United":
+	                        teamAbv = "Newcastle";
+	                        break;
+	                    case "Nottingham Forest":
+	                        teamAbv = "Nottingham";
+	                        break;    
+	                    case "Southampton FC":
+	                        teamAbv = "Southampton";
 	                        break;     
-	                        
+	                    case "Tottenham Hotspur":
+	                        teamAbv = "Tottenham";
+	                        break;     
+	                    case "West Ham United":
+	                        teamAbv = "West Ham";
+	                        break; 
+	                    case "Wolverhampton Wanderers":
+	                        teamAbv = "Wolves";
+	                        break;
 	                    default:
 	                        teamAbv = fields[1]; // Si no hay coincidencia, usa el nombre original
 	                        break;
