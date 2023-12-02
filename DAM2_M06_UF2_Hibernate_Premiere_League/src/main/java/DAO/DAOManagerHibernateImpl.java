@@ -39,7 +39,7 @@ public class DAOManagerHibernateImpl implements DAOManager {
             transaction.commit();
             isAdded = true;
             
-        } catch (Exception ex) { ex.printStackTrace(); }
+        } catch (Exception e) { e.printStackTrace(); }
         
         return isAdded;
     }
@@ -62,7 +62,7 @@ public class DAOManagerHibernateImpl implements DAOManager {
                 transaction.commit();
                 isDeleated = true;
             } 
-        } catch (Exception ex) { ex.printStackTrace(); }
+        } catch (Exception e) { e.printStackTrace(); }
         
         return isDeleated;
     }
@@ -88,7 +88,7 @@ public class DAOManagerHibernateImpl implements DAOManager {
             	teamAfterUpdate.setLogoLink(oneTeam.getLogoLink());
             	transaction.commit();
             }
-        } catch (Exception ex) { ex.printStackTrace(); }
+        } catch (Exception e) { e.printStackTrace(); }
         
         return teamAfterUpdate;
     }
@@ -106,31 +106,23 @@ public class DAOManagerHibernateImpl implements DAOManager {
         return teamByAbbr;
     }
     
-	@Override
-	public Team getTeamByName(String teamName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/*
     @Override
-    public Team GetTeamName(String teamName) {
-
-        Team team = null;
-
-        try 
-        {
-            Query query = entityManager.createQuery("Select t from Team t WHERE clubName='"+teamName+"'", Team.class);
-            team = (Team)query.getSingleResult();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        return team;
-    }*/
-
+    public Team getTeamByName(String teamName) {
+    	
+    	Team teamByName = null;
+    	
+    	try {
+    		
+    		Query query = eMan.createQuery(
+    				"SELECT t FROM Team t WHERE t.clubName = :name");
+    		query.setParameter("name", teamName);
+    		teamByName= (Team) query.getSingleResult();
+    		
+    	} catch (Exception e) { e.printStackTrace(); }
+    	
+    	return teamByName;
+    }
+    
 	@Override
 	public ArrayList<Team> getAllTeams() {
 		// TODO Auto-generated method stub
