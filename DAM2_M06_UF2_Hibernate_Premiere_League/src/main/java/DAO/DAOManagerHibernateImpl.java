@@ -26,20 +26,6 @@ public class DAOManagerHibernateImpl implements DAOManager {
     }
 
 	
-    
-	@Override
-    public void close() {
-        // Closing the EntityManager y el EntityManagerFactory 
-        if (eMan != null && eMan.isOpen()) {
-            eMan.close();
-        }
-        if (eManFact != null && eManFact.isOpen()) {
-            eManFact.close();
-        }
-    }
-
-
-
 	@Override
 	public boolean AddTeam(Team oneTeam) {
 		// TODO Auto-generated method stub
@@ -53,7 +39,6 @@ public class DAOManagerHibernateImpl implements DAOManager {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 
 
 	@Override
@@ -85,5 +70,16 @@ public class DAOManagerHibernateImpl implements DAOManager {
 		// TODO Auto-generated method stub
 		return null;
 	}
+    
+	@Override
+    public void close() {
+        // Closing the EntityManager y el EntityManagerFactory 
+        if (eMan != null && eMan.isOpen()) {
+            eMan.close();
+        }
+        if (eManFact != null && eManFact.isOpen()) {
+            eManFact.close();
+        }
+    }
 
 }
