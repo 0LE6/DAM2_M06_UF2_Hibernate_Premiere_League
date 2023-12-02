@@ -163,6 +163,7 @@ public class DAOManagerHibernateImpl implements DAOManager {
 	public int ImportPlayers(String playersFileName, String teamName) {
 
 	    int count = 0;
+	    int playerId = 0;
 
 	    try (FileReader fR = new FileReader(playersFileName);
 	         BufferedReader bR = new BufferedReader(fR);
@@ -173,87 +174,87 @@ public class DAOManagerHibernateImpl implements DAOManager {
 	        while (line != null) {
 
 	            String[] fields = line.split(";");
-	            // Asegúrate de tener suficientes campos y verifica si el equipo y la temporada son correctos
-	            if (fields.length >= 6 && "2022-2023".equals(fields[5])) {
+	            
+	         // Switch para mapear el nombre del equipo a la abreviatura
+                String correctTeamName;
+                switch (fields[1]) {
+                    case "Arsenal FC":
+                        correctTeamName = "Arsenal"; 
+                        break;
+                    case "Aston Villa":
+                        correctTeamName = "Aston Villa";
+                        break;
+                    case "AFC Bournemouth":
+                        correctTeamName = "Bournemouth";
+                        break; 
+                    case "Brentford FC":
+                        correctTeamName = "Brentford";
+                        break;
+                    case "Brighton & Hove Albion":
+                        correctTeamName = "Brighton";
+                        break;    
+                    case "Chelsea FC":
+                        correctTeamName = "Chelsea";
+                        break;     
+                    case "Crystal Palace":
+                        correctTeamName = "Crystal Palace";
+                        break;
+                    case "Everton FC":
+                        correctTeamName = "Everton";
+                        break;   
+                    case "Fulham FC":
+                        correctTeamName = "Fulham";
+                        break;    
+                    case "Leeds United":
+                        correctTeamName = "Leeds";
+                        break;     
+                    case "Leicester City":
+                        correctTeamName = "Leicester";
+                        break;     
+                    case "Liverpool FC":
+                        correctTeamName = "Liverpool";
+                        break; 
+                    case "Manchester City":
+                        correctTeamName = "Man City";
+                        break;     
+                    case "Manchester United":
+                        correctTeamName = "Man United";
+                        break; 
+                    case "Newcastle United":
+                        correctTeamName = "Newcastle";
+                        break;
+                    case "Nottingham Forest":
+                        correctTeamName = "Nottingham";
+                        break;    
+                    case "Southampton FC":
+                        correctTeamName = "Southampton";
+                        break;     
+                    case "Tottenham Hotspur":
+                        correctTeamName = "Tottenham";
+                        break;     
+                    case "West Ham United":
+                        correctTeamName = "West Ham";
+                        break; 
+                    case "Wolverhampton Wanderers":
+                        correctTeamName = "Wolves";
+                        break;
+                    default:
+                        correctTeamName = fields[1]; 
+                        break;
+                }
+	            
+	            if ("2022-2023".equals(fields[5])) {
 
 	                Player newPlayer = new Player();
-	                
-	                // Switch para mapear el nombre del equipo a la abreviatura
-	                String teamAbv;
-	                switch (fields[1]) {
-	                    case "Arsenal FC":
-	                        teamAbv = "Arsenal";
-	                        break;
-	                    case "Aston Villa":
-	                        teamAbv = "Aston Villa";
-	                        break;
-	                    case "AFC Bournemouth":
-	                        teamAbv = "Bournemouth";
-	                        break; 
-	                    case "Brentford FC":
-	                        teamAbv = "Brentford";
-	                        break;
-	                    case "Brighton & Hove Albion":
-	                        teamAbv = "Brighton";
-	                        break;    
-	                    case "Chelsea FC":
-	                        teamAbv = "Chelsea";
-	                        break;     
-	                    case "Crystal Palace":
-	                        teamAbv = "Crystal Palace";
-	                        break;
-	                    case "Everton FC":
-	                        teamAbv = "Everton";
-	                        break;   
-	                    case "Fulham FC":
-	                        teamAbv = "Fulham";
-	                        break;    
-	                    case "Leeds United":
-	                        teamAbv = "Leeds";
-	                        break;     
-	                    case "Leicester City":
-	                        teamAbv = "Leicester";
-	                        break;     
-	                    case "Liverpool FC":
-	                        teamAbv = "Liverpool";
-	                        break; 
-	                    case "Manchester City":
-	                        teamAbv = "Man City";
-	                        break;     
-	                    case "Manchester United":
-	                        teamAbv = "Man United";
-	                        break; 
-	                    case "Newcastle United":
-	                        teamAbv = "Newcastle";
-	                        break;
-	                    case "Nottingham Forest":
-	                        teamAbv = "Nottingham";
-	                        break;    
-	                    case "Southampton FC":
-	                        teamAbv = "Southampton";
-	                        break;     
-	                    case "Tottenham Hotspur":
-	                        teamAbv = "Tottenham";
-	                        break;     
-	                    case "West Ham United":
-	                        teamAbv = "West Ham";
-	                        break; 
-	                    case "Wolverhampton Wanderers":
-	                        teamAbv = "Wolves";
-	                        break;
-	                    default:
-	                        teamAbv = fields[1]; // Si no hay coincidencia, usa el nombre original
-	                        break;
-	                }
 
-	                // Configura los atributos del jugador según el orden en el archivo CSV
-	                newPlayer.setTeamAbv(teamAbv);
-	                newPlayer.setPlayerId(Integer.parseInt(fields[2]));
+	                /* NOTE : important, using the team name to get the abbreviation 
+	                 * through the method getTeamByName and then the getter of abbreviation */
+	                newPlayer.setTeamAbv(getTeamByName(correctTeamName).getAbv());
+	                newPlayer.setPlayerId(playerId++); 
 	                newPlayer.setName(fields[0]);
 	                newPlayer.setHeight(Integer.parseInt(fields[3]));
 	                newPlayer.setPosition(fields[4]);
 
-	                // Llama al método addPlayer que deberías haber implementado anteriormente
 	                if (addPlayer(newPlayer)) {
 	                    count++;
 	                }
@@ -261,9 +262,7 @@ public class DAOManagerHibernateImpl implements DAOManager {
 
 	            line = bR.readLine();
 	        }
-	    } catch (IOException ex) {
-	        ex.printStackTrace();
-	    }
+	    } catch (IOException ex) { ex.printStackTrace(); }
 
 	    return count;
 	}
