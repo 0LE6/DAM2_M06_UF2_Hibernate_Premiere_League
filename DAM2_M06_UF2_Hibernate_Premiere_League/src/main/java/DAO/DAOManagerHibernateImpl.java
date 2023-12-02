@@ -95,21 +95,41 @@ public class DAOManagerHibernateImpl implements DAOManager {
 
 
 
-	@Override
-	public Team getTeamByAbbr(String teamAbbr) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
+    @Override
+    public Team getTeamByAbbr(String teamAbbr) {
+    	
+    	Team teamByAbbr = null;
+    	
+    	try { teamByAbbr = eMan.find(Team.class, teamAbbr); }
+    	catch (Exception ex) { ex.printStackTrace(); }
+    	
+        return teamByAbbr;
+    }
+    
 	@Override
 	public Team getTeamByName(String teamName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/*
+    @Override
+    public Team GetTeamName(String teamName) {
 
+        Team team = null;
+
+        try 
+        {
+            Query query = entityManager.createQuery("Select t from Team t WHERE clubName='"+teamName+"'", Team.class);
+            team = (Team)query.getSingleResult();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return team;
+    }*/
 
 	@Override
 	public ArrayList<Team> getAllTeams() {
