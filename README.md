@@ -60,22 +60,22 @@ The goal is to simplify the `DAOManager` interface by including the following me
 
 ``` java
 
-      /* addTeam version A3.4 */
+/* addTeam version A3.4 */
 			
-			Team testTeam = new Team(
-					"Test A34", "A34", "#FFFFFE", "fakelink4testa34.lol");
-			Player player1 = new Player("A34",1,"Player 1", 200, "GK");
-			Player player2 = new Player("A34",2,"Player 2", 200, "FW");
-			Player player3 = new Player("A34",3,"Player 3", 200, "MF");
-			
-			List<Player> players = new ArrayList<Player>();
-			players.add(player1);
-			players.add(player2);
-			players.add(player3);
-			
-			if (dao.addTeam(testTeam, players)) {
-				System.out.println("Team with Players ADDED SUCCESFULLY!");
-			} else { System.out.println("TEAM with Players NOT ADDED!"); }
+Team testTeam = new Team(
+		"Test A34", "A34", "#FFFFFE", "fakelink4testa34.lol");
+Player player1 = new Player("A34",1,"Player 1", 200, "GK");
+Player player2 = new Player("A34",2,"Player 2", 200, "FW");
+Player player3 = new Player("A34",3,"Player 3", 200, "MF");
+
+List<Player> players = new ArrayList<Player>();
+players.add(player1);
+players.add(player2);
+players.add(player3);
+
+if (dao.addTeam(testTeam, players)) {
+	System.out.println("Team with Players ADDED SUCCESFULLY!");
+} else { System.out.println("TEAM with Players NOT ADDED!"); }
 
 ```
 
