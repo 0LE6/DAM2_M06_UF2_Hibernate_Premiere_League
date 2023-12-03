@@ -61,12 +61,13 @@ public class Principal {
 			
 			/* addPlayers */
 //			System.out.println(dao.importPlayers(PLAYERS_FILE, "Man City"));
-			
+//			
 //			System.out.println(dao.importPlayers(PLAYERS_FILE, "Man United"));
-			
+//			
 //			System.out.println(dao.importPlayers(PLAYERS_FILE, "Arsenal"));
 			
-			/* addTeam version A3.4*/
+			/* addTeam version A3.4 | NOTE : works smoothly */
+			
 			Team testTeam = new Team(
 					"Test A34", "A34", "#FFFFFE", "fakelink4testa34.lol");
 			Player player1 = new Player("A34",1,"Player 1", 200, "GK");
