@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -275,6 +277,11 @@ public class DAOManagerHibernateImpl implements DAOManager {
 	    return count;
 	}
 
+	@Override
+	public boolean addTeam(Team oneTeam, List<Player> plantilla) {
+		
+		return true;
+	}
     
 	@Override
     public void close() {
