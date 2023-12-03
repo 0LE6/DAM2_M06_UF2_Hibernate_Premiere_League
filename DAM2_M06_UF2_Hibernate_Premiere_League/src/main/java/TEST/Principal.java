@@ -14,7 +14,7 @@ public class Principal {
 		// Using try-w-resources to implements the AutoCloseable
 		try (DAOManager dao = DAOManagerFactory.createDAOManager()){
 			
-			/* AddTeam */
+			/* AddTeam version A3.2 */
 //			Team olegFC = new Team(
 //					"Oleg FC", "OLG", "#FFFFFF", "fakelink.lol");
 //			if (dao.addTeam(olegFC)) {
@@ -47,7 +47,7 @@ public class Principal {
 			
 			
 			/* NOTE : tests of A3.3 */
-			// addPlayer
+			/* addPlayer */
 //			Player oleg = new Player(
 //					"MNC", 1, "Oleg Kharenko", 190, "MF");
 //			if(dao.addPlayer(oleg)) {
@@ -56,12 +56,16 @@ public class Principal {
 			
 			// NOTE: working!
 			
-			// addPlayers
+			/* addPlayers */
 //			System.out.println(dao.importPlayers(PLAYERS_FILE, "Man City"));
 			
 //			System.out.println(dao.importPlayers(PLAYERS_FILE, "Man United"));
 			
 //			System.out.println(dao.importPlayers(PLAYERS_FILE, "Arsenal"));
+			
+			/* addTeam version A3.4*/
+			// TODO ...
+			
 			
 			
 		} catch (Exception e) { e.printStackTrace(); }
