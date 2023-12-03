@@ -1,9 +1,14 @@
 package MODEL;
 
 import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Table(name="team")
@@ -24,9 +29,14 @@ public class Team implements Serializable {
 	
 	@Column(name="logo_link")
     private String logoLink;
-
 	
-    // Constructors
+	/* NOTE : A3.3 - O2M */
+	@OneToMany(targetEntity=Player.class, cascade=CascadeType.ALL)
+	@JoinColumn(name="team_abv")
+	private List<Player> players;
+	
+
+	// NOTE : 3 constructors
 	public Team() { } /* Very important, if there's no one the update method breaks */
 	
     public Team(String clubName, String abv, String hexCode, String logoLink) {
@@ -35,9 +45,24 @@ public class Team implements Serializable {
         this.hexCode = hexCode;
         this.logoLink = logoLink;
     }
+    
+    public Team(String clubName, String abv, 
+    		String hexCode, String logoLink, List<Player> players) {
+        this.clubName = clubName;
+        this.abv = abv;
+        this.hexCode = hexCode;
+        this.logoLink = logoLink;
+        this.players = players;
+    }
 
     /* Getters & Setters */
 	public static long getSerialversionuid() { return serialVersionUID;}
+	
+
+	/* NOTE : the specials for O2M */
+    public List<Player> getPlayers() { return players; }
+	public void setPlayers(List<Player> players) { this.players = players; }
+	
 	
 	public String getClubName() {
 		return clubName;
