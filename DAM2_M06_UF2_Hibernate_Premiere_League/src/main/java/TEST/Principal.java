@@ -64,7 +64,7 @@ public class Principal {
 //			System.out.println(dao.importPlayers(PLAYERS_FILE, "Arsenal"));
 			
 			/* addTeam version A3.4*/
-			// TODO ...
+			
 			
 			
 			
