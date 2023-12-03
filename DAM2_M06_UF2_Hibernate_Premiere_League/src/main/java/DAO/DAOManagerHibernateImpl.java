@@ -277,10 +277,24 @@ public class DAOManagerHibernateImpl implements DAOManager {
 	    return count;
 	}
 
+	/* NOTE : method of A3.4 */
 	@Override
 	public boolean addTeam(Team oneTeam, List<Player> plantilla) {
 		
-		return true;
+		EntityTransaction transaction = eMan.getTransaction();
+        boolean isAdded = false;
+
+        try {
+        	
+            transaction.begin();
+            oneTeam.setPlayers(plantilla);
+            eMan.persist(oneTeam);
+            transaction.commit();
+            isAdded = true;
+            
+        } catch (Exception e) { e.printStackTrace(); }
+        
+        return isAdded;
 	}
     
 	@Override
