@@ -1,6 +1,12 @@
 # DAM2_M06_UF2_Hibernate_Premiere_League
 Practice number 3 from Formative Unite 2 of Modul 06. Using Hibernate and DAO Pattern to manage information of MySQL DataBase.
 
+- [A3 - Task Description](#a3---task-description)
+  - [A3.1 - Simplification of DAOManager Interface](#a31---simplification-of-daomanager-interface)
+  - [A3.3 - Composite Keys](#a33---composite-keys)
+  - [A3.4 - One to Many Class Relation](#a34---one-to-many-class-relation)
+- [Usage](#usage)
+
 ![image](https://github.com/0LE6/DAM2_M06_UF2_Hibernate_Premiere_League/assets/135649528/88259ac5-6a9f-410f-af60-b654f061e4a2)
 
 ### A3.2 - Simplification of DAOManager Interface
