@@ -3,11 +3,7 @@ Practice number 3 from Formative Unite 2 of Modul 06. Using Hibernate and DAO Pa
 
 ![image](https://github.com/0LE6/DAM2_M06_UF2_Hibernate_Premiere_League/assets/135649528/88259ac5-6a9f-410f-af60-b654f061e4a2)
 
-# DAOManager Interface Refactoring
-
-## A3 - Task Description
-
-### A3.1 - Simplification of DAOManager Interface
+### A3.2 - Simplification of DAOManager Interface
 
 The goal is to simplify the `DAOManager` interface by including the following methods:
 
@@ -62,5 +58,25 @@ The goal is to simplify the `DAOManager` interface by including the following me
 
 ## Usage
 
-Please refer to the updated DAOManager interface for the revised methods and their implementations.
+``` java
+
+      /* addTeam version A3.4 */
+			
+			Team testTeam = new Team(
+					"Test A34", "A34", "#FFFFFE", "fakelink4testa34.lol");
+			Player player1 = new Player("A34",1,"Player 1", 200, "GK");
+			Player player2 = new Player("A34",2,"Player 2", 200, "FW");
+			Player player3 = new Player("A34",3,"Player 3", 200, "MF");
+			
+			List<Player> players = new ArrayList<Player>();
+			players.add(player1);
+			players.add(player2);
+			players.add(player3);
+			
+			if (dao.addTeam(testTeam, players)) {
+				System.out.println("Team with Players ADDED SUCCESFULLY!");
+			} else { System.out.println("TEAM with Players NOT ADDED!"); }
+
+```
+
 
