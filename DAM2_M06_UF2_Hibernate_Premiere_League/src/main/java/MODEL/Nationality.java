@@ -16,8 +16,7 @@ public class Nationality implements Serializable {
 	@Id
 	@Column(name="abv")
 	private String abv;
-	
-	@Id
+
 	@Column(name="description")
 	private String description;
 	
