@@ -32,6 +32,9 @@ public class Player implements Serializable {
 	@Column(name="position")
 	private String position;
 	
+//	@Column(name="nationality")
+//	private String nationality;
+	
 	
 	public Player() { }
 

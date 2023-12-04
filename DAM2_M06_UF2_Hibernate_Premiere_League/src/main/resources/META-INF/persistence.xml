@@ -12,7 +12,7 @@
 
         <class>MODEL.Team</class>
         <class>MODEL.Player</class>
-        <class>Model.Nationality</class>
+        <!-- <class>Model.Nationality</class> -->
         <!-- Aquí podremos agregar mas clases cuando sea necesario -->
 
         <properties>
